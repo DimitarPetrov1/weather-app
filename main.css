@@ -1,0 +1,30 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.phone-wrap {
+  background-color: rgb(240, 248, 255);
+  width: 460px;
+  padding: 20px;
+  border-radius: 20px;
+}
+.panel-large {
+  padding: 20px;
+  margin: 20px 0;
+}
+.panel-small {
+  padding: 10px;
+  margin: 10px 0;
+}
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#topDate {
+  font-weight: bold;
+}
