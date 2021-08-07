@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
 *,
 *:before,
 *:after {
@@ -5,26 +6,74 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  background: #000;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: rgb(70, 70, 70);
+}
+svg {
+  stroke: rgb(70, 70, 70);
+  width: 20px;
+  height: 20px;
+}
 .phone-wrap {
-  background-color: rgb(240, 248, 255);
-  width: 460px;
+  background-color: rgb(233, 233, 233);
+  width: 400px;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
 }
 .panel-large {
   padding: 20px;
   margin: 20px 0;
+  border-radius: 20px;
+  background: rgb(245, 245, 245);
+  background: linear-gradient(
+    -45deg,
+    rgb(255, 255, 255) 20%,
+    rgb(220, 220, 220) 100%
+  );
+  box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.6),
+    -6px -6px 10px rgba(240, 240, 240, 1);
 }
 .panel-small {
   padding: 10px;
   margin: 10px 0;
+  border-radius: 8px;
 }
+
+/* header */
 .top-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#topDate {
-  font-weight: bold;
+#topSearch {
+  background: rgb(47, 47, 47);
+  padding: 8px;
+  border-radius: 6px;
+  background: rgb(245, 245, 245);
+  background: linear-gradient(
+    -45deg,
+    rgb(255, 255, 255) 20%,
+    rgb(220, 220, 220) 100%
+  );
+  box-shadow: 6px 6px 8px rgba(200, 200, 200, 0.5),
+    -6px -6px 8px rgba(240, 240, 240, 1);
+}
+
+.line {
+  margin: 20px 0;
+  height: 4px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  box-shadow: inset 2px 2px 2px rgb(200, 200, 200),
+    -2px -2px 2px rgb(255, 255, 255);
+}
+/* user can't select */
+.main-panel {
+  user-select: none;
 }
