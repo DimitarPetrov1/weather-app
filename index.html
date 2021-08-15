@@ -12,6 +12,7 @@
     <title>Mobile Weather App</title>
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="src/css/main-panel.css" />
+    <link rel="stylesheet" href="src/css/hourly.css" />
   </head>
   <body>
     <div class="phone-wrap">
@@ -98,7 +99,7 @@
                   ></path>
                 </svg>
 
-                <div id='changeOfRain'>!!!</div>
+                <div id='changeOfRain'></div>
               </div>
               <div class="devider">|</div>
               <div class="main-panel__small-row-inner">
@@ -157,8 +158,19 @@
         </div>
         <div id="lastUpdated"></div>
       </div>
+      <p style="user-select: none">Hourly forecast</p>
+      <div class="hourly">
+        <div class="hourly-wrap"></div>
+      </div>
+      <div class="line"></div>
+      <p style="user-select: none">7 day forecast</p>
+      <div class="weekly">
+        <div class="weekly-wrap"></div>
+      </div>
+
     </div>
 
-    <script type="module" src="index.js"></script>
+    <script defer type="module" src="index.js"></script>
+    <script defer type="module" src="hourly.js"></script>
   </body>
 </html>

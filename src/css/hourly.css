@@ -1,0 +1,35 @@
+.hourly {
+  overflow: scroll;
+}
+
+.hourly-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  height: 160px;
+  padding: 20px 0;
+  text-align: center;
+}
+.hourly-card:first-of-type {
+  background: rgb(228, 247, 255);
+}
+
+.hourly-card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80px;
+  margin-right: 10px;
+}
+.hourlyCardTime,
+.hourlyCardTemp {
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+.hourlyCardImg {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
