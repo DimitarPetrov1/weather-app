@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="src/css/main-panel.css" />
     <link rel="stylesheet" href="src/css/hourly.css" />
+    <link rel="stylesheet" href="src/css/weekly.css" />
   </head>
   <body>
     <div class="phone-wrap">
@@ -98,7 +99,6 @@
                     d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"
                   ></path>
                 </svg>
-
                 <div id='changeOfRain'></div>
               </div>
               <div class="devider">|</div>
@@ -163,14 +163,14 @@
         <div class="hourly-wrap"></div>
       </div>
       <div class="line"></div>
-      <p style="user-select: none">7 day forecast</p>
+      <p style="user-select: none">Weekly forecast</p>
       <div class="weekly">
         <div class="weekly-wrap"></div>
       </div>
-
     </div>
 
     <script defer type="module" src="index.js"></script>
     <script defer type="module" src="hourly.js"></script>
+    <script defer type='module' src="weekly.js"></script>
   </body>
 </html>

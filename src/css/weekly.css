@@ -1,0 +1,48 @@
+.weekly {
+  overflow-x: scroll;
+}
+.weekly-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  min-height: 240px;
+  padding: 20px 0;
+  text-align: center;
+}
+.weekly-card {
+  min-width: 140px;
+  margin-right: 10px;
+  color: rgb(121, 121, 121);
+}
+
+.weekly-card:first-of-type,
+.weekly-card:first-of-type .weekly-card__img {
+  background: rgb(228, 247, 255);
+}
+
+.weekly-card__img {
+  background: #fff;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.6),
+    -6px -6px 10px rgba(240, 240, 240, 1);
+}
+
+.line-small {
+  height: 1px;
+  margin: 6px 0;
+  background: rgb(228, 228, 228);
+}
+.weekly-card__info {
+  display: flex;
+  flex-direction: column;
+}
+.weekly-card__info svg {
+  width: 12px;
+}
+
+.weekly-card__info-inner {
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+}

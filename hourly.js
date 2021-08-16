@@ -1,8 +1,7 @@
 import { KEY, selectedLocation } from "./src/data.js";
 
-function createTemplate(id, time, img, temp) {
+function createTemplate(time, img, temp) {
   let template = document.createElement("div");
-  template.setAttribute("name", `h-${id}`);
   let p1 = document.createElement("p");
   let p2 = document.createElement("img");
   let p3 = document.createElement("p");
@@ -26,7 +25,6 @@ function createTemplate(id, time, img, temp) {
 }
 
 let hourlyTarget = document.querySelector(".hourly-wrap");
-let astroInfo = [];
 let changeOfRain = document.getElementById("changeOfRain");
 
 function getCurrentHour() {
@@ -51,12 +49,9 @@ const fetchHourly = async () => {
         );
         hourlyImg.push(data.forecast.forecastday[0].hour[i].condition.icon);
         hourlyTemp.push(data.forecast.forecastday[0].hour[i].temp_c + "°C");
-
-        // astro below
-        astroInfo.push(data.forecast.forecastday[0].astro);
         if (i >= getCurrentHour()) {
           hourlyTarget.appendChild(
-            createTemplate(i, hourlyTime[i], hourlyImg[i], hourlyTemp[i])
+            createTemplate(hourlyTime[i], hourlyImg[i], hourlyTemp[i])
           );
           // maybe needs looking into
           changeOfRain.textContent =
@@ -69,5 +64,3 @@ const fetchHourly = async () => {
 };
 
 fetchHourly();
-
-export { astroInfo };

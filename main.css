@@ -18,12 +18,11 @@ box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.6),
 
 body {
   width: 400px;
-  background: #000;
+  background: rgb(243, 243, 243);
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   color: rgb(70, 70, 70);
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
 }
 
 svg {
@@ -42,11 +41,13 @@ svg {
 }
 
 .phone-wrap::-webkit-scrollbar,
-.hourly::-webkit-scrollbar {
+.hourly::-webkit-scrollbar,
+.weekly::-webkit-scrollbar {
   display: none;
 }
 .phone-wrap,
-.hourly {
+.hourly,
+.weekly {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -69,7 +70,7 @@ svg {
   border-radius: 8px;
   background: rgb(255, 255, 255);
   box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.8),
-  -6px -6px 10px rgba(240, 240, 240, 1);
+    -6px -6px 10px rgba(240, 240, 240, 1);
 }
 
 /* header */
@@ -103,7 +104,8 @@ svg {
 }
 /* user can't select */
 .main-panel,
-.hourly {
+.hourly,
+.weekly {
   user-select: none;
 }
 img {

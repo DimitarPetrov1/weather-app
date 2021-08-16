@@ -1,6 +1,4 @@
 import { KEY, selectedLocation } from "./src/data.js";
-import { astroInfo } from "./hourly.js";
-// current stats in the location
 
 let mainPanelLocation = document.getElementById("mainPanelLocation");
 let mainPanelTemperature = document.getElementById("mainPanelTemperature");
@@ -16,7 +14,7 @@ let lastUpdated = document.getElementById("lastUpdated");
 
 const fetchLocation = async () => {
   await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${selectedLocation}`
+    `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${selectedLocation}&aqi=no`
   )
     .then((response) => response.json())
     .then((data) => {
