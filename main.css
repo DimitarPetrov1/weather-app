@@ -111,3 +111,7 @@ svg {
 img {
   -webkit-user-drag: none;
 }
+.credits {
+  color: lightgrey;
+  font-size: 0.4rem;
+}
