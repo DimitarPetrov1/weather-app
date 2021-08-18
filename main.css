@@ -114,4 +114,9 @@ img {
 .credits {
   color: lightgrey;
   font-size: 0.4rem;
+  text-align: right;
+}
+.credits a {
+  color: lightgrey;
+  text-decoration: none;
 }

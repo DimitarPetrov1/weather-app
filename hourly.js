@@ -1,4 +1,7 @@
-import { KEY, selectedLocation } from "./src/data.js";
+import { preferedUnitsTemp, preferredUnitsSpeed } from "./src/data.js";
+
+let data = JSON.parse(localStorage.getItem("data"));
+console.log(data);
 
 function createTemplate(time, img, temp) {
   let template = document.createElement("div");
@@ -18,7 +21,7 @@ function createTemplate(time, img, temp) {
   template.appendChild(p2);
 
   p3.classList.add("hourlyCardTemp");
-  p3.textContent = temp;
+  p3.textContent = temp + preferedUnitsTemp;
   template.appendChild(p3);
 
   return template;
@@ -27,40 +30,28 @@ function createTemplate(time, img, temp) {
 let hourlyTarget = document.querySelector(".hourly-wrap");
 let changeOfRain = document.getElementById("changeOfRain");
 
+data.hourly.map((i) => {
+  hourlyTarget.appendChild(createTemplate(i.dt, i.weather.icon, i.temp));
+});
+
 function getCurrentHour() {
   let today = new Date();
   let curretHour = today.getHours();
   return Number(curretHour);
 }
 
-const fetchHourly = async () => {
-  let hourlyTime = [];
-  let hourlyImg = [];
-  let hourlyTemp = [];
-  await fetch(
-    `http://api.weatherapi.com/v1/history.json?key=${KEY}&q=${selectedLocation}&dt=2021-08-15`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      let i = 0;
-      while (i < 24) {
-        hourlyTime.push(
-          data.forecast.forecastday[0].hour[i].time.slice(10, 16)
-        );
-        hourlyImg.push(data.forecast.forecastday[0].hour[i].condition.icon);
-        hourlyTemp.push(data.forecast.forecastday[0].hour[i].temp_c + "°C");
-        if (i >= getCurrentHour()) {
-          hourlyTarget.appendChild(
-            createTemplate(hourlyTime[i], hourlyImg[i], hourlyTemp[i])
-          );
-          // maybe needs looking into
-          changeOfRain.textContent =
-            data.forecast.forecastday[0].hour[i].chance_of_rain + "%";
-        }
-        i++;
-      }
-    })
-    .catch((err) => console.log(err));
-};
-
-fetchHourly();
+// let i = 0;
+// while (i < 24) {
+//   hourlyTime.push(data.forecast.forecastday[0].hour[i].time.slice(10, 16));
+//   hourlyImg.push(data.forecast.forecastday[0].hour[i].condition.icon);
+//   hourlyTemp.push(data.forecast.forecastday[0].hour[i].temp_c + "°C");
+//   if (i >= getCurrentHour()) {
+//     hourlyTarget.appendChild(
+//       createTemplate(hourlyTime[i], hourlyImg[i], hourlyTemp[i])
+//     );
+//     // maybe needs looking into
+//     changeOfRain.textContent =
+//       data.forecast.forecastday[0].hour[i].chance_of_rain + "%";
+//   }
+//   i++;
+// }
