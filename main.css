@@ -57,11 +57,11 @@ svg {
   margin: 20px 0;
   border-radius: 20px;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
+  /* background: linear-gradient(
     -45deg,
     rgb(255, 255, 255) 20%,
     rgb(220, 220, 220) 100%
-  );
+  ); */
   box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.8),
     -6px -6px 10px rgb(255, 255, 255);
 }
@@ -81,17 +81,23 @@ svg {
 }
 
 #topSearch {
-  background: rgb(47, 47, 47);
   padding: 8px;
   border-radius: 6px;
   background: rgb(245, 245, 245);
-  background: linear-gradient(
-    -45deg,
-    rgb(255, 255, 255) 20%,
-    rgb(220, 220, 220) 100%
-  );
   box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.6),
     -6px -6px 10px rgba(240, 240, 240, 1);
+
+  border: none;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  transition: all 0.15s ease-out;
+  background-image: url(./src/img/search.svg);
+  background-position: center;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  outline: none;
+  cursor: pointer;
 }
 
 .line {
@@ -102,7 +108,7 @@ svg {
   box-shadow: inset 2px 2px 2px rgb(200, 200, 200),
     -2px -2px 2px rgb(255, 255, 255);
 }
-/* user can't select */
+.phone-wrap,
 .main-panel,
 .hourly,
 .weekly {

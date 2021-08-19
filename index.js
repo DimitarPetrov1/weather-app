@@ -5,7 +5,7 @@ let data = JSON.parse(localStorage.getItem("data"));
 let IMG_icon = current.weather[0].icon;
 let URL_image = `http://openweathermap.org/img/wn/${IMG_icon}@2x.png`;
 
-let template = `
+let currentTemplate = `
   <div class="main-panel panel-large">
   <div class="main-panel__top">
     <div class="main-panel__top-left">
@@ -137,4 +137,4 @@ let template = `
   `;
 
 let targetCurrent = document.getElementById("targetCurrent");
-targetCurrent.innerHTML = template;
+targetCurrent.innerHTML = currentTemplate;

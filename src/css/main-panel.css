@@ -49,7 +49,7 @@
   font-size: 0.9rem;
 }
 .main-panel__text::first-letter {
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 #mainPanelLocation {
