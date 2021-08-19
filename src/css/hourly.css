@@ -10,10 +10,6 @@
   padding: 20px 0;
   text-align: center;
 }
-.hourly-card:first-of-type {
-  background: rgb(228, 247, 255);
-}
-
 .hourly-card {
   display: flex;
   position: relative;

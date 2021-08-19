@@ -15,11 +15,6 @@
   color: rgb(121, 121, 121);
 }
 
-.weekly-card:first-of-type,
-.weekly-card:first-of-type .weekly-card__img {
-  background: rgb(228, 247, 255);
-}
-
 .weekly-card__img {
   background: #fff;
   margin: 10px;
