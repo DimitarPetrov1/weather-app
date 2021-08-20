@@ -23,6 +23,9 @@
   border-radius: 20px;
   box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.6),
     -6px -6px 10px rgba(240, 240, 240, 1);
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
 }
 
 .line-small {
@@ -40,9 +43,11 @@
 .weekly-card__info {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .weekly-card__info svg {
   width: 12px;
+  margin-right: 8px;
 }
 
 .weekly-card__info-inner {

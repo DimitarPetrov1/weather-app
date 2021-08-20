@@ -69,7 +69,6 @@ const fetchData = () => {
         DATA.daily_data = data.daily;
         DATA.current_humidity = data.current.humidity;
         DATA.current_uv = data.current.uvi;
-        console.log(data, DATA);
       })
       .catch((err) => console.log(err));
     renderCurrentWeather(DATA);
@@ -126,19 +125,19 @@ const renderCurrentWeather = (input) => {
   <div class="main-panel__bottom">
       <div class="main-panel__small-row-inner main-panel__text">
       ${windspeedSvg}
-        <div id="windSpeed">${input.wind_speed + preferredUnitsSpeed}</div>
+        <div>${input.wind_speed + preferredUnitsSpeed}</div>
       </div>
       <div class="main-panel__small-row-inner main-panel__text">
       ${cloudSvg}
-        <div id='cloudsSky'>${input.curent_clouds + "%"}</div>
+        <div>${input.curent_clouds + "%"}</div>
       </div>
       <div class="main-panel__small-row-inner main-panel__text">
       ${humiditySvg}
-        <div id="humidity">${input.current_humidity + "%"}</div>
+        <div>${input.current_humidity + "%"}</div>
       </div>
       <div class="main-panel__small-row-inner main-panel__text">
       ${sunSvg}
-        <div id="currentUV">${"UV: " + input.current_uv}</div>
+        <div>${"UV: " + input.current_uv}</div>
       </div>
   </div>  
     <div id="lastUpdated"></div>
@@ -181,6 +180,7 @@ const renderHourly = (input) => {
 //
 const renderDaily = (input) => {
   dailyTarget.innerHTML = input.daily_data.map((date) => {
+    console.log(date);
     return `
           <div class="weekly-card panel-small">
           <p class='weekly-card__date'></p>
@@ -195,12 +195,18 @@ const renderDaily = (input) => {
           <div class="line-small"></div>
           <span>
               <div class="weekly-card__info">
-              <div class="weekly-card__info-inner">
-               ${thermometerSvg}max: ${Math.round(date.temp.max)}°C
-              </div>
-              <div class="weekly-card__info-inner">
-               ${thermometerSvg}min: ${Math.round(date.temp.min)}°C
-              </div>
+                  <div class="weekly-card__info-inner">
+                  ${thermometerSvg}max: ${Math.round(date.temp.max)}°C
+                  </div>
+                  <div class="weekly-card__info-inner">
+                  ${thermometerSvg}min: ${Math.round(date.temp.min)}°C
+                  </div>
+                  <div class="weekly-card__info-inner">
+                  ${windspeedSvg}${date.wind_speed + preferredUnitsSpeed}
+                  </div>
+                  <div class="weekly-card__info-inner">
+                  ${humiditySvg}${date.humidity}
+                  </div>
               </div>
           </span>
           </div>
