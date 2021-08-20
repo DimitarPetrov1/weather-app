@@ -14,7 +14,9 @@
   margin-right: 10px;
   color: rgb(121, 121, 121);
 }
-
+.weekly-card__date {
+  font-weight: bold;
+}
 .weekly-card__img {
   background: #fff;
   margin: 10px;

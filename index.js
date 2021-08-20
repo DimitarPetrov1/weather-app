@@ -1,7 +1,7 @@
 const KEY = "d48013e265168c93a3145b9c87869f29";
 let searchOpen = false;
 
-let defaultLocation = "sofia";
+let fallbackLocation = "London";
 let preferedUnits = "units=metric";
 let preferedUnitsTemp = "°C";
 let preferredUnitsSpeed = " km/h";
@@ -12,27 +12,39 @@ const dailyTarget = document.querySelector(".weekly-wrap");
 
 let thermometer = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>`;
 
-const topSearch = document.getElementById("topSearch");
+const serachWrap = document.querySelector(".serach-wrap");
+const startSearch = document.getElementById("startSearch");
+const topSearchField = document.getElementById("topSearch");
 
-topSearch.addEventListener("click", (e) => {
+serachWrap.addEventListener("click", (e) => {
+  let selectedLocation = "";
+
   e.preventDefault();
   if (!searchOpen) {
-    topSearch.focus();
-    topSearch.style.width = "100%";
-    topSearch.style.backgroundImage = "none";
+    topSearchField.focus();
+    serachWrap.style.width = "100%";
+    serachWrap.style.backgroundImage = "none";
+    topSearchField.style.opacity = 1;
+    startSearch.style.visibility = "visible";
     searchOpen = true;
   } else {
-    topSearch.blur();
-    topSearch.style.width = "44px";
-    topSearch.style.backgroundImage = "url(./src/img/search.svg)";
-    defaultLocation = e.target.value;
-    topSearch.value = "";
+    topSearchField.blur();
+    serachWrap.style.width = "44px";
+    serachWrap.style.backgroundImage = "url(./src/img/search.svg)";
+    topSearchField.value = e.target.value;
+    topSearchField.style.opacity = 0;
+    startSearch.style.visibility = "hidden";
     searchOpen = false;
-    fetchData();
   }
 });
 
-const fetchData = () => {
+startSearch.addEventListener("click", (e) => {
+  e.preventDefault();
+  localStorage.setItem("default", topSearchField.value);
+  fetchData(topSearchField.value);
+});
+
+const fetchData = (location) => {
   let DATA = {};
   let lat = "";
   let lon = "";
@@ -63,7 +75,9 @@ const fetchData = () => {
   }
   async function fetchCurrent() {
     await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?&${preferedUnits}&q=${defaultLocation}&appid=${KEY}`
+      `http://api.openweathermap.org/data/2.5/weather?&${preferedUnits}&q=${
+        location ? location : fallbackLocation
+      }&appid=${KEY}`
     )
       .then((response) => {
         return response.json();
@@ -86,7 +100,11 @@ const renderCurrentWeather = (input) => {
   <div class="main-panel panel-large">
   <div class="main-panel__top">
     <div class="main-panel__top-left">
-      <p id="mainPanelLocation">${defaultLocation}</p>
+      <p id="mainPanelLocation">${
+        localStorage.getItem("default")
+          ? localStorage.getItem("default")
+          : fallbackLocation
+      }</p>
       <img id="mainPanelImg" src='${URL_image}' alt="Weather icon" />
     </div>
     <div class="main-panel__top-right">
@@ -215,50 +233,32 @@ const renderCurrentWeather = (input) => {
 
 //
 const renderHourly = (input) => {
-  function createTemplate(time, imgURL, temp) {
-    let wrap = document.createElement("div");
-    let p1 = document.createElement("p");
-    let img = document.createElement("img");
-    let p3 = document.createElement("p");
-
-    wrap.classList.add("hourly-card", "panel-small");
-
-    p1.classList.add("hourlyCardTime");
-    p1.textContent = time;
-    wrap.appendChild(p1);
-
-    img.classList.add("hourlyCardImg");
-    img.setAttribute("src", imgURL);
-    img.setAttribute("alt", "weather picture");
-    wrap.appendChild(img);
-
-    p3.classList.add("hourlyCardTemp");
-    p3.textContent = Math.round(temp) + preferedUnitsTemp;
-    wrap.appendChild(p3.cloneNode(true));
-
-    return wrap;
-  }
+  let hours = [];
   function getCurrentHour() {
     let today = new Date();
     let curretHour = today.getHours();
-    return Number(curretHour);
-  }
-  // generate items in hourly
-  let h = getCurrentHour();
-  for (let i = 0; i < 24; i++) {
-    if (h < 23) {
-      h++;
-    } else {
-      h = 0;
+    for (let i = 0; i < 24; i++) {
+      if (curretHour < 23) {
+        curretHour++;
+      } else {
+        curretHour = 0;
+      }
+      hours.push(curretHour);
     }
-    hourlyTarget.appendChild(
-      createTemplate(
-        h + ":00",
-        `http://openweathermap.org/img/wn/${input.hourly_data[i].weather[0].icon}@2x.png`,
-        input.hourly_data[i].temp
-      )
-    );
   }
+  getCurrentHour();
+
+  hourlyTarget.innerHTML = input.hourly_data.splice(0, 24).map((hour, i) => {
+    return `
+          <div class="hourly-card panel-small">
+          <p class="hourly-card__time">${hours[i] + ":00"}</p>
+              <img src=${`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`} class="hourly-card__img"/>
+              <p class="hourly-card__temp">${
+                Math.round(hour.temp) + preferedUnitsTemp
+              }</p>
+          </div>
+          `;
+  });
 };
 
 //
