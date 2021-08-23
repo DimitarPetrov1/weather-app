@@ -31,6 +31,7 @@ svg {
   height: 20px;
 }
 .phone-wrap {
+  position: relative;
   background-color: rgb(243, 243, 243);
   width: 100%;
   height: 100vh;
@@ -74,8 +75,13 @@ svg {
 }
 
 /* header */
-
-.serach-wrap {
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.serach-wrap,
+#userOptions {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,12 +94,42 @@ svg {
   border: none;
   width: 44px;
   height: 44px;
-  position: relative;
   transition: width 0.15s ease-out, height 0.15s ease-out;
   background-image: url(./src/img/search.svg);
   background-position: center;
   background-size: 50% 50%;
   background-repeat: no-repeat;
+}
+
+#userOptions {
+  background-image: url(./src/img/menu.svg);
+  width: 44px;
+  height: 44px;
+  z-index: 900;
+  align-items: flex-start;
+}
+
+.serach-wrap {
+  margin-right: 10px;
+  z-index: 900;
+}
+
+.menu-modal {
+  width: 200px;
+  height: 100%;
+  position: absolute;
+  right: -200px;
+  z-index: 900;
+  transition: all 0.15s ease-out;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background: rgb(245, 245, 245);
+  box-shadow: inset 6px 6px 10px rgb(255, 255, 255);
+  padding: 20px;
+}
+
+.menu-modal input[type="radio"] {
+  /*  */
 }
 
 #topSearch {
@@ -139,4 +175,9 @@ img {
 .hourly-wrap,
 .weekly-wrap {
   color: transparent;
+}
+
+.theme-dark {
+  /* background: rgb(66, 66, 66); */
+  filter: invert(0.85);
 }

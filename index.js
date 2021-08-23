@@ -3,27 +3,70 @@ import {
   windspeedSvg,
   cloudSvg,
   humiditySvg,
-  sunSvg,
+  sunSvg
 } from "./src/svgs.js";
 const KEY = "d48013e265168c93a3145b9c87869f29";
 let searchOpen = false;
+let menuOpen = false;
 
-let preferedUnits = "units=metric";
+let metricUnits = "metric";
 let preferedUnitsTemp = "°C";
 let preferredUnitsSpeed = " km/h";
 
+const userOptions = document.getElementById("userOptions");
 const targetCurrent = document.getElementById("targetCurrent");
+const phoneWrap = document.querySelector(".phone-wrap");
 const hourlyTarget = document.querySelector(".hourly-wrap");
 const dailyTarget = document.querySelector(".weekly-wrap");
 const serachWrap = document.querySelector(".serach-wrap");
 const startSearch = document.getElementById("startSearch");
 const topSearchField = document.getElementById("topSearch");
 
+const themeCheckboxes = document.querySelectorAll(".theme-checkbox");
+const langCheckboxes = document.querySelectorAll(".lang-checkbox");
+
+const checkLC = () => {
+  let isDark = localStorage.getItem("theme-dark");
+  let activeLang = localStorage.getItem("lang");
+  if (isDark === "true") {
+    phoneWrap.classList.add("theme-dark");
+    themeCheckboxes[1].checked = true;
+  } else {
+    phoneWrap.classList.remove("theme-dark");
+    themeCheckboxes[0].checked = true;
+  }
+  if (activeLang === "bg") {
+    langCheckboxes[1].checked = true;
+  } else {
+    langCheckboxes[0].checked = true;
+  }
+};
+themeCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", () => {
+    if (checkbox.value === "dark") {
+      phoneWrap.classList.add("theme-dark");
+      localStorage.setItem("theme-dark", "true");
+    } else {
+      phoneWrap.classList.remove("theme-dark");
+      localStorage.setItem("theme-dark", "false");
+    }
+  });
+});
+langCheckboxes.forEach((lang) => {
+  lang.addEventListener("change", () => {
+    if (lang.value === "bg") {
+      localStorage.setItem("lang", "bg");
+    } else {
+      localStorage.setItem("lang", "en");
+    }
+  });
+});
+
 serachWrap.addEventListener("click", (e) => {
   e.preventDefault();
   if (!searchOpen) {
     topSearchField.focus();
-    serachWrap.style.width = "100%";
+    serachWrap.style.width = "calc(100% - 54px)";
     serachWrap.style.backgroundImage = "none";
     topSearchField.style.opacity = 1;
     startSearch.style.visibility = "visible";
@@ -32,7 +75,7 @@ serachWrap.addEventListener("click", (e) => {
     topSearchField.blur();
     serachWrap.style.width = "44px";
     serachWrap.style.backgroundImage = "url(./src/img/search.svg)";
-    topSearchField.value = e.target.value;
+    topSearchField.value = "";
     topSearchField.style.opacity = 0;
     startSearch.style.visibility = "hidden";
     searchOpen = false;
@@ -44,20 +87,36 @@ startSearch.addEventListener("click", (e) => {
   localStorage.setItem("default", topSearchField.value);
   fetchData();
 });
+
+userOptions.addEventListener("click", () => {
+  const menuModal = document.querySelector(".menu-modal");
+  if (!menuOpen) {
+    menuModal.style.right = "0";
+    menuOpen = true;
+  } else {
+    menuModal.style.right = "-200px";
+    menuOpen = false;
+  }
+});
+
 // data is fetched only from the local storage, we have a default if a user is new or local storage is empty
 const fetchData = () => {
   let DATA = {};
   let lat = "";
   let lon = "";
+  let city = "";
 
   async function fetchAll() {
     await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?&${preferedUnits}&lat=${lat}&lon=${lon}&appid=${KEY}`
+      `https://api.openweathermap.org/data/2.5/onecall?&units=${metricUnits}&lang=${
+        localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      }&lat=${lat}&lon=${lon}&appid=${KEY}`
     )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
+        DATA.city = city;
         DATA.feels_like = data.current.feels_like;
         DATA.temp = data.current.temp;
         DATA.curent_clouds = data.current.clouds;
@@ -77,7 +136,7 @@ const fetchData = () => {
   }
   async function fetchCurrent() {
     await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?&${preferedUnits}&q=${
+      `http://api.openweathermap.org/data/2.5/weather?&lang=&q=${
         localStorage.getItem("default")
           ? localStorage.getItem("default")
           : "London"
@@ -87,6 +146,7 @@ const fetchData = () => {
         return response.json();
       })
       .then((data) => {
+        city = data.name;
         lat = data.coord.lat;
         lon = data.coord.lon;
       })
@@ -107,7 +167,7 @@ const renderCurrentWeather = (input) => {
       <p id="mainPanelLocation">${
         localStorage.getItem("default")
           ? localStorage.getItem("default")
-          : "London"
+          : input.city
       }</p>
       <img id="mainPanelImg" src='${URL_image}' alt="Weather icon" />
     </div>
@@ -117,7 +177,9 @@ const renderCurrentWeather = (input) => {
       }</p>
       <div class="main-panel__text">${input.weather_desc}</div>
       <div class="main-panel__text">
-        Feels like ${Math.round(input.feels_like) + preferedUnitsTemp}
+        ${
+          localStorage.getItem("lang") === "en" ? "Feels like" : "усеща се като"
+        } ${Math.round(input.feels_like) + preferedUnitsTemp}
       </div>
     </div>
   </div>
@@ -180,7 +242,6 @@ const renderHourly = (input) => {
 //
 const renderDaily = (input) => {
   dailyTarget.innerHTML = input.daily_data.map((date) => {
-    console.log(date);
     return `
           <div class="weekly-card panel-small">
           <p class='weekly-card__date'></p>
@@ -222,4 +283,5 @@ const renderDaily = (input) => {
     targets[i].textContent = D.replace(" ", ", ");
   }
 };
+checkLC();
 fetchData();

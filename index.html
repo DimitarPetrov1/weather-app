@@ -16,21 +16,64 @@
   </head>
   <body>
     <div class="phone-wrap">
-      <form class="top-header">
-        <div class="serach-wrap">
+      <div class="top-header">
+        <form class="serach-wrap">
           <input value="" placeholder="" type="search" id="topSearch" />
           <button type="submit" id="startSearch">
             <img src="./src/img/search.svg" alt="SearchBTN" />
           </button>
+        </form>
+        <div id="userOptions">
+          <div class="menu-modal">
+            <div class="menu-modal_option">
+              <p>Select Theme</p>
+              light
+              <input
+                class="theme-checkbox"
+                type="radio"
+                name="theme"
+                value="light"
+              />
+              dark
+              <input
+                class="theme-checkbox"
+                type="radio"
+                name="theme"
+                value="dark"
+              />
+            </div>
+            <div class="menu-modal_option">
+              <p>language</p>
+              EN
+              <input
+                class="lang-checkbox"
+                type="radio"
+                name="language"
+                value="en"
+              />
+              BG
+              <input
+                class="lang-checkbox"
+                type="radio"
+                name="language"
+                value="bg"
+              />
+            </div>
+            <div class="menu-modal_option">
+              <p>prefered units</p>
+              <input type="radio" name="units" value="metric" />
+              <input type="radio" name="units" value="imperial" />
+            </div>
+          </div>
         </div>
-      </form>
+      </div>
       <div id="targetCurrent"></div>
-      <p style="user-select: none">24-hour forecast</p>
+      <p id="parHourly">24-hour forecast</p>
       <div class="hourly">
         <div class="hourly-wrap"></div>
       </div>
       <div class="line"></div>
-      <p style="user-select: none">8-day forecast</p>
+      <p id="parDaily">8-day forecast</p>
       <div class="weekly">
         <div class="weekly-wrap"></div>
       </div>
