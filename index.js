@@ -3,62 +3,94 @@ import {
   windspeedSvg,
   cloudSvg,
   humiditySvg,
-  sunSvg
+  sunSvg,
 } from "./src/svgs.js";
-const KEY = "d48013e265168c93a3145b9c87869f29";
+import {
+  K,
+  userOptions,
+  targetCurrent,
+  phoneWrap,
+  hourlyTarget,
+  dailyTarget,
+  serachWrap,
+  startSearch,
+  topSearchField,
+  themeCheckboxes,
+  langCheckboxes,
+  unitsCheckboxes,
+} from "./src/vars.js";
 let searchOpen = false;
 let menuOpen = false;
 
-let metricUnits = "metric";
-let preferedUnitsTemp = "°C";
-let preferredUnitsSpeed = " km/h";
+let units = "";
+let unitsTemp = "";
+let unitsSpeed = "";
 
-const userOptions = document.getElementById("userOptions");
-const targetCurrent = document.getElementById("targetCurrent");
-const phoneWrap = document.querySelector(".phone-wrap");
-const hourlyTarget = document.querySelector(".hourly-wrap");
-const dailyTarget = document.querySelector(".weekly-wrap");
-const serachWrap = document.querySelector(".serach-wrap");
-const startSearch = document.getElementById("startSearch");
-const topSearchField = document.getElementById("topSearch");
+const handleUnits = () => {
+  if (localStorage.getItem("units") == "imperial") {
+    units = "imperial";
+    unitsTemp = "°F";
+  } else {
+    units = "metric";
+    unitsTemp = "°C";
+  }
 
-const themeCheckboxes = document.querySelectorAll(".theme-checkbox");
-const langCheckboxes = document.querySelectorAll(".lang-checkbox");
+  if (localStorage.getItem("lang") == "bg") {
+    if (localStorage.getItem("units") == "imperial") {
+      unitsSpeed = " мили/ч";
+    } else {
+      unitsSpeed = " км/ч";
+    }
+  } else {
+    if (localStorage.getItem("units") == "imperial") {
+      unitsSpeed = " mph";
+    } else {
+      unitsSpeed = " km/h";
+    }
+  }
+};
 
-const checkLC = () => {
-  let isDark = localStorage.getItem("theme-dark");
-  let activeLang = localStorage.getItem("lang");
-  if (isDark === "true") {
+const checkLS = () => {
+  let theme = localStorage.getItem("theme");
+  let lang = localStorage.getItem("lang");
+  let units = localStorage.getItem("units");
+  if (theme === "dark") {
     phoneWrap.classList.add("theme-dark");
     themeCheckboxes[1].checked = true;
   } else {
     phoneWrap.classList.remove("theme-dark");
     themeCheckboxes[0].checked = true;
   }
-  if (activeLang === "bg") {
+  if (lang === "bg") {
     langCheckboxes[1].checked = true;
   } else {
     langCheckboxes[0].checked = true;
   }
+  if (units === "imperial") {
+    unitsCheckboxes[1].checked = true;
+  } else {
+    unitsCheckboxes[0].checked = true;
+  }
 };
 themeCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", () => {
-    if (checkbox.value === "dark") {
-      phoneWrap.classList.add("theme-dark");
-      localStorage.setItem("theme-dark", "true");
-    } else {
-      phoneWrap.classList.remove("theme-dark");
-      localStorage.setItem("theme-dark", "false");
-    }
+    phoneWrap.classList.add(checkbox.value);
+    localStorage.setItem("theme", checkbox.value);
+    checkLS();
   });
 });
 langCheckboxes.forEach((lang) => {
   lang.addEventListener("change", () => {
-    if (lang.value === "bg") {
-      localStorage.setItem("lang", "bg");
-    } else {
-      localStorage.setItem("lang", "en");
-    }
+    localStorage.setItem("lang", lang.value);
+    handleUnits();
+    fetchData();
+  });
+});
+unitsCheckboxes.forEach((unit) => {
+  unit.addEventListener("change", () => {
+    localStorage.setItem("units", unit.value);
+    handleUnits();
+    fetchData();
   });
 });
 
@@ -108,9 +140,9 @@ const fetchData = () => {
 
   async function fetchAll() {
     await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?&units=${metricUnits}&lang=${
+      `https://api.openweathermap.org/data/2.5/onecall?&units=${units}&lang=${
         localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
-      }&lat=${lat}&lon=${lon}&appid=${KEY}`
+      }&lat=${lat}&lon=${lon}&appid=${K}`
     )
       .then((response) => {
         return response.json();
@@ -140,7 +172,7 @@ const fetchData = () => {
         localStorage.getItem("default")
           ? localStorage.getItem("default")
           : "London"
-      }&appid=${KEY}`
+      }&appid=${K}`
     )
       .then((response) => {
         return response.json();
@@ -156,7 +188,6 @@ const fetchData = () => {
   fetchCurrent();
 };
 
-//
 const renderCurrentWeather = (input) => {
   let IMG_icon = input.weather_icon;
   let URL_image = `http://openweathermap.org/img/wn/${IMG_icon}@2x.png`;
@@ -172,14 +203,12 @@ const renderCurrentWeather = (input) => {
       <img id="mainPanelImg" src='${URL_image}' alt="Weather icon" />
     </div>
     <div class="main-panel__top-right">
-      <p id="mainPanelTemperature">${
-        Math.round(input.temp) + preferedUnitsTemp
-      }</p>
+      <p id="mainPanelTemperature">${Math.round(input.temp) + unitsTemp}</p>
       <div class="main-panel__text">${input.weather_desc}</div>
       <div class="main-panel__text">
         ${
-          localStorage.getItem("lang") === "en" ? "Feels like" : "усеща се като"
-        } ${Math.round(input.feels_like) + preferedUnitsTemp}
+          localStorage.getItem("lang") === "bg" ? "Усеща се като" : "Feels like"
+        } ${Math.round(input.feels_like) + unitsTemp}
       </div>
     </div>
   </div>
@@ -187,7 +216,7 @@ const renderCurrentWeather = (input) => {
   <div class="main-panel__bottom">
       <div class="main-panel__small-row-inner main-panel__text">
       ${windspeedSvg}
-        <div>${input.wind_speed + preferredUnitsSpeed}</div>
+        <div>${input.wind_speed + unitsSpeed}</div>
       </div>
       <div class="main-panel__small-row-inner main-panel__text">
       ${cloudSvg}
@@ -209,9 +238,15 @@ const renderCurrentWeather = (input) => {
   targetCurrent.innerHTML = currentTemplate;
 };
 
-//
 const renderHourly = (input) => {
   let hours = [];
+  let headerText = document.getElementById("parHourly");
+  if (localStorage.getItem("lang") == "bg") {
+    headerText.textContent = "24-часова прогноза";
+  } else {
+    headerText.textContent = "24-hour forecast";
+  }
+
   function getCurrentHour() {
     let today = new Date();
     let curretHour = today.getHours();
@@ -232,15 +267,23 @@ const renderHourly = (input) => {
           <p class="hourly-card__time">${hours[i] + ":00"}</p>
               <img src=${`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`} class="hourly-card__img"/>
               <p class="hourly-card__temp">${
-                Math.round(hour.temp) + preferedUnitsTemp
+                Math.round(hour.temp) + unitsTemp
               }</p>
           </div>
           `;
   });
 };
 
-//
 const renderDaily = (input) => {
+  let lang = localStorage.getItem("lang") ? localStorage.getItem("lang") : "en";
+  let headerText = document.getElementById("parDaily");
+
+  if (localStorage.getItem("lang") == "bg") {
+    headerText.textContent = "8-дневна прогноза";
+  } else {
+    headerText.textContent = "8-day forecast";
+  }
+
   dailyTarget.innerHTML = input.daily_data.map((date) => {
     return `
           <div class="weekly-card panel-small">
@@ -257,16 +300,20 @@ const renderDaily = (input) => {
           <span>
               <div class="weekly-card__info">
                   <div class="weekly-card__info-inner">
-                  ${thermometerSvg}max: ${Math.round(date.temp.max)}°C
+                  ${thermometerSvg}
+                  ${localStorage.getItem("lang") == "bg" ? "макс: " : "max: "}
+                  ${Math.round(date.temp.max) + unitsTemp}
                   </div>
                   <div class="weekly-card__info-inner">
-                  ${thermometerSvg}min: ${Math.round(date.temp.min)}°C
+                  ${thermometerSvg}
+                  ${localStorage.getItem("lang") == "bg" ? "мин: " : "min: "}
+                  ${Math.round(date.temp.min) + unitsTemp}
                   </div>
                   <div class="weekly-card__info-inner">
-                  ${windspeedSvg}${date.wind_speed + preferredUnitsSpeed}
+                  ${windspeedSvg}${date.wind_speed + unitsSpeed}
                   </div>
                   <div class="weekly-card__info-inner">
-                  ${humiditySvg}${date.humidity}
+                  ${humiditySvg}${date.humidity}%
                   </div>
               </div>
           </span>
@@ -274,14 +321,21 @@ const renderDaily = (input) => {
   `;
   });
   let targets = document.querySelectorAll(".weekly-card__date");
-  targets[0].textContent = "Today";
-  targets[1].textContent = "Tomorrow";
+  if (localStorage.getItem("lang") == "bg") {
+    targets[0].textContent = "Днес";
+    targets[1].textContent = "Утре";
+  } else {
+    targets[0].textContent = "Today";
+    targets[1].textContent = "Tomorrow";
+  }
+
   for (let i = 2; i < targets.length; i++) {
     let d = new Date();
-    d.setDate(d.getDate() + i);
-    let D = d.toString().slice(0, 10);
-    targets[i].textContent = D.replace(" ", ", ");
+    targets[i].textContent = d.toLocaleDateString(
+      lang + "-" + lang.toUpperCase()
+    );
   }
 };
-checkLC();
+handleUnits();
+checkLS();
 fetchData();
