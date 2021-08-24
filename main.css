@@ -118,6 +118,7 @@ svg {
   width: 200px;
   height: 100%;
   position: absolute;
+  top: 0;
   right: -200px;
   z-index: 900;
   transition: all 0.15s ease-out;
@@ -179,5 +180,5 @@ img {
 
 .theme-dark {
   /* background: rgb(66, 66, 66); */
-  filter: invert(0.85);
+  filter: invert(0.8);
 }

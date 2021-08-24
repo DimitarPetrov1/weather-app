@@ -122,12 +122,15 @@ startSearch.addEventListener("click", (e) => {
 
 userOptions.addEventListener("click", () => {
   const menuModal = document.querySelector(".menu-modal");
+  const menuModalClose = document.getElementById("menuModalClose");
   if (!menuOpen) {
     menuModal.style.right = "0";
     menuOpen = true;
   } else {
+    // menuModalClose.addEventListener("click", () => {
     menuModal.style.right = "-200px";
     menuOpen = false;
+    // });
   }
 });
 
