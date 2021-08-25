@@ -3,7 +3,7 @@ import {
   windspeedSvg,
   cloudSvg,
   humiditySvg,
-  sunSvg,
+  sunSvg
 } from "./src/svgs.js";
 import {
   K,
@@ -17,7 +17,7 @@ import {
   topSearchField,
   themeCheckboxes,
   langCheckboxes,
-  unitsCheckboxes,
+  unitsCheckboxes
 } from "./src/vars.js";
 let searchOpen = false;
 let menuOpen = false;
@@ -27,7 +27,7 @@ let unitsTemp = "";
 let unitsSpeed = "";
 
 const handleUnits = () => {
-  if (localStorage.getItem("units") == "imperial") {
+  if (localStorage.getItem("units") === "imperial") {
     units = "imperial";
     unitsTemp = "°F";
   } else {
@@ -35,14 +35,14 @@ const handleUnits = () => {
     unitsTemp = "°C";
   }
 
-  if (localStorage.getItem("lang") == "bg") {
-    if (localStorage.getItem("units") == "imperial") {
+  if (localStorage.getItem("lang") === "bg") {
+    if (localStorage.getItem("units") === "imperial") {
       unitsSpeed = " мили/ч";
     } else {
       unitsSpeed = " км/ч";
     }
   } else {
-    if (localStorage.getItem("units") == "imperial") {
+    if (localStorage.getItem("units") === "imperial") {
       unitsSpeed = " mph";
     } else {
       unitsSpeed = " km/h";
@@ -122,13 +122,13 @@ startSearch.addEventListener("click", (e) => {
 
 userOptions.addEventListener("click", () => {
   const menuModal = document.querySelector(".menu-modal");
-  const menuModalClose = document.getElementById("menuModalClose");
+  // const menuModalClose = document.getElementById("menuModalClose");
   if (!menuOpen) {
     menuModal.style.right = "0";
     menuOpen = true;
   } else {
     // menuModalClose.addEventListener("click", () => {
-    menuModal.style.right = "-200px";
+    menuModal.style.right = "-220px";
     menuOpen = false;
     // });
   }
@@ -244,7 +244,7 @@ const renderCurrentWeather = (input) => {
 const renderHourly = (input) => {
   let hours = [];
   let headerText = document.getElementById("parHourly");
-  if (localStorage.getItem("lang") == "bg") {
+  if (localStorage.getItem("lang") === "bg") {
     headerText.textContent = "24-часова прогноза";
   } else {
     headerText.textContent = "24-hour forecast";
@@ -281,7 +281,7 @@ const renderDaily = (input) => {
   let lang = localStorage.getItem("lang") ? localStorage.getItem("lang") : "en";
   let headerText = document.getElementById("parDaily");
 
-  if (localStorage.getItem("lang") == "bg") {
+  if (localStorage.getItem("lang") === "bg") {
     headerText.textContent = "8-дневна прогноза";
   } else {
     headerText.textContent = "8-day forecast";
@@ -304,12 +304,12 @@ const renderDaily = (input) => {
               <div class="weekly-card__info">
                   <div class="weekly-card__info-inner">
                   ${thermometerSvg}
-                  ${localStorage.getItem("lang") == "bg" ? "макс: " : "max: "}
+                  ${localStorage.getItem("lang") === "bg" ? "макс: " : "max: "}
                   ${Math.round(date.temp.max) + unitsTemp}
                   </div>
                   <div class="weekly-card__info-inner">
                   ${thermometerSvg}
-                  ${localStorage.getItem("lang") == "bg" ? "мин: " : "min: "}
+                  ${localStorage.getItem("lang") === "bg" ? "мин: " : "min: "}
                   ${Math.round(date.temp.min) + unitsTemp}
                   </div>
                   <div class="weekly-card__info-inner">
@@ -324,7 +324,7 @@ const renderDaily = (input) => {
   `;
   });
   let targets = document.querySelectorAll(".weekly-card__date");
-  if (localStorage.getItem("lang") == "bg") {
+  if (localStorage.getItem("lang") === "bg") {
     targets[0].textContent = "Днес";
     targets[1].textContent = "Утре";
   } else {

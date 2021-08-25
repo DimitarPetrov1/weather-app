@@ -20,9 +20,7 @@
 .weekly-card__img {
   background: #fff;
   margin: 10px;
-  border-radius: 20px;
-  box-shadow: 6px 6px 10px rgba(200, 200, 200, 0.6),
-    -6px -6px 10px rgba(240, 240, 240, 1);
+  border-radius: 8px;
   width: 70px;
   height: 70px;
   object-fit: contain;

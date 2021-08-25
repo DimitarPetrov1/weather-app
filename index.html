@@ -9,10 +9,11 @@
     />
     <!-- ^^ needed to work in codepen -->
     <title>Weather App</title>
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="src/css/main-panel.css" />
-    <link rel="stylesheet" href="src/css/hourly.css" />
-    <link rel="stylesheet" href="src/css/weekly.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/menu-options.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/main-panel.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/hourly.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/weekly.css" />
   </head>
   <body>
     <div class="phone-wrap">
@@ -27,54 +28,67 @@
           <div class="menu-modal">
             <div id="menuModalClose"><img src="./src/img/x.svg" alt="X" /></div>
             <div class="menu-modal_option">
-              <p>Select Theme</p>
-              light
+              <p>Theme:</p>
+              <label for="tLight">Light</label>
               <input
-                class="theme-checkbox"
+                class="checkbox theme-checkbox"
                 type="radio"
                 name="theme"
                 value="light"
+                id="tLight"
+                checked
               />
-              dark
+              <label for="tDark">Dark</label>
               <input
-                class="theme-checkbox"
+                class="checkbox theme-checkbox"
                 type="radio"
                 name="theme"
                 value="dark"
+                id="tDark"
               />
             </div>
             <div class="menu-modal_option">
-              <p>language</p>
-              EN
+              <p>Language:</p>
+              <label for="cbEn">
+                <img class="flag" src="./src/img/flag-400.jpg" alt="UK" />
+              </label>
               <input
-                class="lang-checkbox"
+                class="checkbox lang-checkbox"
                 type="radio"
                 name="language"
                 value="en"
+                id="cbEn"
+                checked
               />
-              BG
+              <label for="cbBg">
+                <img class="flag" src="./src/img/flag-800.jpg" alt="BG" />
+              </label>
               <input
-                class="lang-checkbox"
+                class="checkbox lang-checkbox"
                 type="radio"
                 name="language"
                 value="bg"
+                id="cbBg"
               />
             </div>
             <div class="menu-modal_option">
-              <p>prefered units</p>
-              metric
+              <p>Units:</p>
+              <label for="uMetric">Metric</label>
               <input
-                class="units-checkbox"
+                class="checkbox units-checkbox"
                 type="radio"
                 name="units"
                 value="metric"
+                id="uMetric"
+                checked
               />
-              imperial
+              <label for="uImperial">Imperial</label>
               <input
-                class="units-checkbox"
+                class="checkbox units-checkbox"
                 type="radio"
                 name="units"
                 value="imperial"
+                id="uImperial"
               />
             </div>
           </div>
