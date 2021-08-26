@@ -19,16 +19,15 @@
     <div class="phone-wrap">
       <div class="top-header">
         <form class="serach-wrap">
-          <input value="" placeholder="" type="search" id="topSearch" />
+          <input value="" placeholder="" type="search" id="topSearchField" />
           <button type="submit" id="startSearch">
             <img src="./src/img/search.svg" alt="SearchBTN" />
           </button>
         </form>
-        <div id="userOptions">
-          <div class="menu-modal">
-            <div id="menuModalClose"><img src="./src/img/x.svg" alt="X" /></div>
-            <div class="menu-modal_option">
-              <p>Theme:</p>
+        <div id="userOptions"></div>
+        <div class="menu-modal">
+          <div class="menu-modal_option">
+            <div class="menu-modal_option_inner">
               <label for="tLight">Light</label>
               <input
                 class="checkbox theme-checkbox"
@@ -38,6 +37,8 @@
                 id="tLight"
                 checked
               />
+            </div>
+            <div class="menu-modal_option_inner">
               <label for="tDark">Dark</label>
               <input
                 class="checkbox theme-checkbox"
@@ -47,8 +48,9 @@
                 id="tDark"
               />
             </div>
-            <div class="menu-modal_option">
-              <p>Language:</p>
+          </div>
+          <div class="menu-modal_option">
+            <div class="menu-modal_option_inner">
               <label for="cbEn">
                 <img class="flag" src="./src/img/flag-400.jpg" alt="UK" />
               </label>
@@ -60,6 +62,8 @@
                 id="cbEn"
                 checked
               />
+            </div>
+            <div class="menu-modal_option_inner">
               <label for="cbBg">
                 <img class="flag" src="./src/img/flag-800.jpg" alt="BG" />
               </label>
@@ -71,8 +75,9 @@
                 id="cbBg"
               />
             </div>
-            <div class="menu-modal_option">
-              <p>Units:</p>
+          </div>
+          <div class="menu-modal_option">
+            <div class="menu-modal_option_inner">
               <label for="uMetric">Metric</label>
               <input
                 class="checkbox units-checkbox"
@@ -82,6 +87,8 @@
                 id="uMetric"
                 checked
               />
+            </div>
+            <div class="menu-modal_option_inner">
               <label for="uImperial">Imperial</label>
               <input
                 class="checkbox units-checkbox"
@@ -94,20 +101,22 @@
           </div>
         </div>
       </div>
-      <div id="targetCurrent"></div>
-      <p id="parHourly">24-hour forecast</p>
-      <div class="hourly">
-        <div class="hourly-wrap"></div>
+      <div id="targets">
+        <div id="targetCurrent"></div>
+        <p id="parHourly">24-hour forecast</p>
+        <div class="hourly">
+          <div class="hourly-wrap"></div>
+        </div>
+        <div class="line"></div>
+        <p id="parDaily">8-day forecast</p>
+        <div class="weekly">
+          <div class="weekly-wrap"></div>
+        </div>
+        <p class="credits">
+          Powered by
+          <a href="https://openweathermap.org">OpenWeather API</a>
+        </p>
       </div>
-      <div class="line"></div>
-      <p id="parDaily">8-day forecast</p>
-      <div class="weekly">
-        <div class="weekly-wrap"></div>
-      </div>
-      <p class="credits">
-        Powered by
-        <a href="https://openweathermap.org">OpenWeather API</a>
-      </p>
     </div>
     <script type="module" src="index.js"></script>
   </body>

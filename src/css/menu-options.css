@@ -8,20 +8,35 @@
   height: 100%;
   position: absolute;
   top: 0;
-  right: -220px;
+  right: -240px;
   z-index: 900;
   transition: all 0.15s ease-out;
   background: var(--body-color);
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  box-shadow: 4px 4px 4px 0px #d1d9e6 inset;
+  /* box-shadow: 4px 4px 4px 0px #d1d9e6 inset; */
+  border-left: 1px solid lightgray;
 }
 
-.menu-modal_option p,
 .menu-modal_option {
+  display: flex;
+  margin: 10px;
+  width: 100%;
+}
+
+.menu-modal_option_inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-basis: 50%;
+  margin-bottom: 10px;
+}
+
+.menu-modal_option_inner label {
   margin-bottom: 10px;
 }
 

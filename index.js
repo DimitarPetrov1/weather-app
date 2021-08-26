@@ -3,7 +3,7 @@ import {
   windspeedSvg,
   cloudSvg,
   humiditySvg,
-  sunSvg
+  sunSvg,
 } from "./src/svgs.js";
 import {
   K,
@@ -17,7 +17,8 @@ import {
   topSearchField,
   themeCheckboxes,
   langCheckboxes,
-  unitsCheckboxes
+  unitsCheckboxes,
+  menuModal,
 } from "./src/vars.js";
 let searchOpen = false;
 let menuOpen = false;
@@ -94,6 +95,12 @@ unitsCheckboxes.forEach((unit) => {
   });
 });
 
+startSearch.addEventListener("click", (e) => {
+  e.preventDefault();
+  localStorage.setItem("default", topSearchField.value);
+  fetchData();
+});
+
 serachWrap.addEventListener("click", (e) => {
   e.preventDefault();
   if (!searchOpen) {
@@ -103,7 +110,19 @@ serachWrap.addEventListener("click", (e) => {
     topSearchField.style.opacity = 1;
     startSearch.style.visibility = "visible";
     searchOpen = true;
-  } else {
+  }
+  if (menuOpen) {
+    menuModal.style.right = "-240px";
+    menuOpen = false;
+  }
+});
+
+userOptions.addEventListener("click", () => {
+  if (!menuOpen) {
+    menuModal.style.right = "0";
+    menuOpen = true;
+  }
+  if (searchOpen) {
     topSearchField.blur();
     serachWrap.style.width = "44px";
     serachWrap.style.backgroundImage = "url(./src/img/search.svg)";
@@ -114,23 +133,18 @@ serachWrap.addEventListener("click", (e) => {
   }
 });
 
-startSearch.addEventListener("click", (e) => {
-  e.preventDefault();
-  localStorage.setItem("default", topSearchField.value);
-  fetchData();
-});
-
-userOptions.addEventListener("click", () => {
-  const menuModal = document.querySelector(".menu-modal");
-  // const menuModalClose = document.getElementById("menuModalClose");
-  if (!menuOpen) {
-    menuModal.style.right = "0";
-    menuOpen = true;
-  } else {
-    // menuModalClose.addEventListener("click", () => {
-    menuModal.style.right = "-220px";
+document.getElementById("targets").addEventListener("click", () => {
+  if (menuOpen) {
+    menuModal.style.right = "-240px";
     menuOpen = false;
-    // });
+  } else if (searchOpen) {
+    topSearchField.blur();
+    serachWrap.style.width = "44px";
+    serachWrap.style.backgroundImage = "url(./src/img/search.svg)";
+    topSearchField.value = "";
+    topSearchField.style.opacity = 0;
+    startSearch.style.visibility = "hidden";
+    searchOpen = false;
   }
 });
 

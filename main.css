@@ -36,7 +36,7 @@ svg {
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 10px 20px;
+  padding: 10px;
   font-size: 0.9rem;
 }
 
@@ -104,7 +104,7 @@ svg {
   z-index: 900;
 }
 
-#topSearch {
+#topSearchField {
   width: 100%;
   height: 100%;
   border: none;
