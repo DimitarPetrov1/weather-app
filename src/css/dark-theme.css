@@ -1,6 +1,7 @@
 :root {
   --body-color-dark: #3b3b3b;
   --font-color-dark: #c0c0c0;
+  --img--bg-dark: #505050;
   --basic-box-shadow-dark: 4px 4px 4px 0px #464646 inset,
     -4px -4px 4px 0px #707070 inset;
   --small-shadow-one-dark: -8px -4px 8px 0px rgb(36, 36, 36),
@@ -15,7 +16,11 @@
 }
 
 .theme-dark svg {
-  stroke: var(--font-color-dark);
+  stroke: var(--font-color-dark) !important;
+}
+
+.theme-dark #startSearch svg {
+  stroke: var(--font-color);
 }
 
 .theme-dark .checkbox:after {
@@ -62,4 +67,10 @@
 .theme-dark .menu-icon {
   color: var(--font-color-dark);
   stroke: var(--font-color-dark);
+}
+
+.theme-dark #mainPanelImg,
+.theme-dark .hourly-card__img,
+.theme-dark .weekly-card__img {
+  background-color: var(--img--bg-dark);
 }

@@ -13,7 +13,6 @@ const langCheckboxes = document.querySelectorAll(".lang-checkbox");
 const unitsCheckboxes = document.querySelectorAll(".units-checkbox");
 const menuModal = document.querySelector(".menu-modal");
 const searchIcon = document.querySelector(".search-icon");
-const menuIcon = document.querySelector("menu-icon");
 
 export {
   K,
@@ -22,7 +21,6 @@ export {
   bodyWrap,
   phoneWrap,
   searchIcon,
-  menuIcon,
   hourlyTarget,
   dailyTarget,
   serachWrap,

@@ -12,7 +12,6 @@ import {
   bodyWrap,
   phoneWrap,
   searchIcon,
-  menuIcon,
   hourlyTarget,
   dailyTarget,
   serachWrap,
@@ -79,6 +78,7 @@ const checkLS = () => {
     unitsCheckboxes[0].checked = true;
   }
 };
+
 themeCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", () => {
     phoneWrap.classList.add(checkbox.value);
@@ -86,6 +86,7 @@ themeCheckboxes.forEach((checkbox) => {
     checkLS();
   });
 });
+
 langCheckboxes.forEach((lang) => {
   lang.addEventListener("change", () => {
     localStorage.setItem("lang", lang.value);
@@ -93,6 +94,7 @@ langCheckboxes.forEach((lang) => {
     fetchData();
   });
 });
+
 unitsCheckboxes.forEach((unit) => {
   unit.addEventListener("change", () => {
     localStorage.setItem("units", unit.value);
@@ -185,9 +187,12 @@ const fetchData = () => {
         DATA.current_uv = data.current.uvi;
       })
       .catch((err) => console.log(err));
-    renderCurrentWeather(DATA);
-    renderHourly(DATA);
-    renderDaily(DATA);
+    console.log(DATA.temp);
+    if (DATA.temp !== undefined) {
+      renderCurrentWeather(DATA);
+      renderHourly(DATA);
+      renderDaily(DATA);
+    }
   }
   async function fetchCurrent() {
     await fetch(
@@ -205,7 +210,11 @@ const fetchData = () => {
         lat = data.coord.lat;
         lon = data.coord.lon;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert("Location not found");
+        localStorage.setItem("default", "London");
+      });
     fetchAll();
   }
   fetchCurrent();
