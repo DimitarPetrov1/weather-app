@@ -15,12 +15,7 @@
 }
 
 .theme-dark svg {
-  stroke: rgb(236, 236, 236);
-}
-
-.theme-dark #userOptions,
-.theme-dark .serach-wrap {
-  /*  */
+  stroke: var(--font-color-dark);
 }
 
 .theme-dark .checkbox:after {
@@ -62,6 +57,9 @@
   background: rgb(93, 93, 93);
 }
 
-.theme-dark #topSearchField {
+.theme-dark #topSearchField,
+.theme-dark .search-icon,
+.theme-dark .menu-icon {
   color: var(--font-color-dark);
+  stroke: var(--font-color-dark);
 }

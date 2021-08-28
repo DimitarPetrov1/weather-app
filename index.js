@@ -11,6 +11,8 @@ import {
   targetCurrent,
   bodyWrap,
   phoneWrap,
+  searchIcon,
+  menuIcon,
   hourlyTarget,
   dailyTarget,
   serachWrap,
@@ -110,7 +112,7 @@ serachWrap.addEventListener("click", (e) => {
   if (!searchOpen) {
     topSearchField.focus();
     serachWrap.style.width = "calc(100% - 54px)";
-    serachWrap.style.backgroundImage = "none";
+    searchIcon.style.opacity = 0;
     topSearchField.style.opacity = 1;
     startSearch.style.visibility = "visible";
     searchOpen = true;
@@ -129,7 +131,7 @@ userOptions.addEventListener("click", () => {
   if (searchOpen) {
     topSearchField.blur();
     serachWrap.style.width = "44px";
-    serachWrap.style.backgroundImage = "url(./src/img/search.svg)";
+    searchIcon.style.opacity = 1;
     topSearchField.value = "";
     topSearchField.style.opacity = 0;
     startSearch.style.visibility = "hidden";
@@ -144,7 +146,7 @@ document.getElementById("targets").addEventListener("click", () => {
   } else if (searchOpen) {
     topSearchField.blur();
     serachWrap.style.width = "44px";
-    serachWrap.style.backgroundImage = "url(./src/img/search.svg)";
+    searchIcon.style.opacity = 1;
     topSearchField.value = "";
     topSearchField.style.opacity = 0;
     startSearch.style.visibility = "hidden";
