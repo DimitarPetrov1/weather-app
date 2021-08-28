@@ -1,0 +1,57 @@
+:root {
+  --body-color-dark: #3b3b3b;
+  --font-color-dark: #c0c0c0;
+  --basic-box-shadow-dark: 4px 4px 4px 0px #464646 inset,
+    -4px -4px 4px 0px #707070 inset;
+  --small-shadow-one-dark: -8px -4px 8px 0px rgb(36, 36, 36),
+    8px 4px 12px 0px #626262;
+  --small-shadow-two-dark: -4px -2px 4px 0px #626262,
+    4px 2px 8px 0px rgb(58, 58, 58);
+}
+
+.theme-dark {
+  background: var(--body-color-dark);
+  color: var(--font-color-dark);
+}
+
+.theme-dark svg {
+  stroke: rgb(236, 236, 236);
+}
+
+.theme-dark #userOptions,
+.theme-dark .serach-wrap {
+  /*  */
+}
+
+.theme-dark .checkbox:after {
+  background: var(--body-color-dark);
+  box-shadow: var(--small-shadow-one-dark);
+}
+
+/* checkbox BG checked */
+.theme-dark .checkbox:checked::after {
+  background: #818181;
+  box-shadow: var(--small-shadow-two-dark);
+}
+
+/* checkbox small circle */
+.theme-dark .checkbox:checked::before {
+  box-shadow: var(--basic-box-shadow-dark);
+}
+
+.theme-dark .main-panel__text {
+  color: var(--font-color-dark);
+}
+
+.theme-dark .panel-large,
+.theme-dark .panel-small,
+.theme-dark #userOptions,
+.theme-dark .serach-wrap {
+  background: var(--body-color-dark);
+  color: var(--font-color-dark);
+  box-shadow: var(--basic-box-shadow-dark);
+}
+
+.theme-dark .menu-modal {
+  background: var(--body-color-dark);
+}

@@ -84,11 +84,11 @@ svg {
   border: none;
   width: 44px;
   height: 44px;
-  transition: width 0.15s ease-out, height 0.15s ease-out;
+  transition: width 0.15s ease-out;
   background-image: url(./src/img/search.svg);
-  background-position: center;
-  background-size: 50% 50%;
-  background-repeat: no-repeat;
+  background-position: center !important;
+  background-size: 50% 50% !important;
+  background-repeat: no-repeat !important;
 }
 
 #userOptions {
