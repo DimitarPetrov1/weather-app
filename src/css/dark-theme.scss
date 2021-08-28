@@ -25,21 +25,18 @@
 
 .theme-dark .checkbox:after {
   background: var(--body-color-dark);
-  -webkit-box-shadow: var(--small-shadow-one-dark);
-          box-shadow: var(--small-shadow-one-dark);
+  box-shadow: var(--small-shadow-one-dark);
 }
 
 /* checkbox BG checked */
 .theme-dark .checkbox:checked::after {
   background: #818181;
-  -webkit-box-shadow: var(--small-shadow-two-dark);
-          box-shadow: var(--small-shadow-two-dark);
+  box-shadow: var(--small-shadow-two-dark);
 }
 
 /* checkbox small circle */
 .theme-dark .checkbox:checked::before {
-  -webkit-box-shadow: var(--basic-box-shadow-dark);
-          box-shadow: var(--basic-box-shadow-dark);
+  box-shadow: var(--basic-box-shadow-dark);
 }
 
 .theme-dark .main-panel__text {
@@ -52,18 +49,17 @@
 .theme-dark .serach-wrap {
   background: var(--body-color-dark);
   color: var(--font-color-dark);
-  -webkit-box-shadow: var(--basic-box-shadow-dark);
-          box-shadow: var(--basic-box-shadow-dark);
+  box-shadow: var(--basic-box-shadow-dark);
 }
 
 .theme-dark .menu-modal {
   background: var(--body-color-dark);
-  border-left: 1px solid #5d5d5d;
+  border-left: 1px solid rgb(93, 93, 93);
 }
 
 .theme-dark .line,
 .theme-dark .line-small {
-  background: #5d5d5d;
+  background: rgb(93, 93, 93);
 }
 
 .theme-dark #topSearchField,
@@ -78,4 +74,3 @@
 .theme-dark .weekly-card__img {
   background-color: var(--img--bg-dark);
 }
-/*# sourceMappingURL=dark-theme.css.map */

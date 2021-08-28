@@ -13,8 +13,7 @@
 *:after {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -31,7 +30,6 @@ svg {
   width: 20px;
   height: 20px;
 }
-
 .phone-wrap {
   position: relative;
   background: var(--body-color);
@@ -48,7 +46,6 @@ svg {
 .weekly::-webkit-scrollbar {
   display: none;
 }
-
 .phone-wrap,
 .hourly,
 .weekly {
@@ -61,52 +58,34 @@ svg {
   margin: 20px 0;
   border-radius: 20px;
   background: var(--body-color);
-  -webkit-box-shadow: var(--basic-box-shadow);
-          box-shadow: var(--basic-box-shadow);
+  box-shadow: var(--basic-box-shadow);
 }
-
 .panel-small {
   padding: 16px 10px;
   border-radius: 8px;
   background: var(--body-color);
-  -webkit-box-shadow: var(--basic-box-shadow);
-          box-shadow: var(--basic-box-shadow);
+  box-shadow: var(--basic-box-shadow);
 }
 
 /* header */
 .top-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
-
 .serach-wrap,
 #userOptions {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px;
   border-radius: 6px;
   background: var(--body-color);
-  -webkit-box-shadow: var(--basic-box-shadow);
-          box-shadow: var(--basic-box-shadow);
+  box-shadow: var(--basic-box-shadow);
   border: none;
   width: 44px;
   height: 44px;
-  -webkit-transition: width 0.15s ease-out;
   transition: width 0.15s ease-out;
 }
 
@@ -114,9 +93,7 @@ svg {
   width: 44px;
   height: 44px;
   z-index: 900;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  align-items: flex-start;
 }
 
 .serach-wrap {
@@ -129,8 +106,7 @@ svg {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #topSearchField {
@@ -163,10 +139,7 @@ svg {
 .main-panel,
 .hourly,
 .weekly {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 img {
@@ -188,4 +161,3 @@ img {
 .weekly-wrap {
   color: transparent;
 }
-/*# sourceMappingURL=main.css.map */

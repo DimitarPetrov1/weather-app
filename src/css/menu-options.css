@@ -5,28 +5,50 @@
   top: 0;
   right: -240px;
   z-index: 900;
+  -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
   background: var(--body-color);
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   border-left: 1px solid lightgray;
 }
 
 .menu-modal_option {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 10px;
   width: 100%;
 }
 
 .menu-modal_option_inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  flex-basis: 50%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
   margin-bottom: 10px;
 }
 
@@ -37,6 +59,7 @@
 .checkbox {
   position: relative;
   margin: 0 10px;
+  -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
 
@@ -47,20 +70,25 @@
   width: 20px;
   height: 20px;
   background: var(--body-color);
-  box-shadow: var(--small-shadow-one);
+  -webkit-box-shadow: var(--small-shadow-one);
+          box-shadow: var(--small-shadow-one);
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 800;
+  -webkit-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
 }
 
 /* checkbox BG checked */
 .checkbox:checked::after {
-  background: rgb(245, 245, 245);
-  box-shadow: var(--small-shadow-two);
+  background: whitesmoke;
+  -webkit-box-shadow: var(--small-shadow-two);
+          box-shadow: var(--small-shadow-two);
+  -webkit-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
 }
 
@@ -70,16 +98,20 @@
   display: block;
   width: 18px;
   height: 18px;
-  box-shadow: var(--basic-box-shadow);
+  -webkit-box-shadow: var(--basic-box-shadow);
+          box-shadow: var(--basic-box-shadow);
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 900;
 }
 
 .flag {
   width: 30px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
+/*# sourceMappingURL=menu-options.css.map */

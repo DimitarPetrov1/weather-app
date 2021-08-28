@@ -1,0 +1,85 @@
+.menu-modal {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -240px;
+  z-index: 900;
+  transition: all 0.15s ease-out;
+  background: var(--body-color);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-left: 1px solid lightgray;
+}
+
+.menu-modal_option {
+  display: flex;
+  margin: 10px;
+  width: 100%;
+}
+
+.menu-modal_option_inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-basis: 50%;
+  margin-bottom: 10px;
+}
+
+.menu-modal_option_inner label {
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  position: relative;
+  margin: 0 10px;
+  transition: all 0.5s ease-out;
+}
+
+/* checkbox BG unchecked*/
+.checkbox:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: var(--body-color);
+  box-shadow: var(--small-shadow-one);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 800;
+  transition: all 0.25s ease-out;
+}
+
+/* checkbox BG checked */
+.checkbox:checked::after {
+  background: rgb(245, 245, 245);
+  box-shadow: var(--small-shadow-two);
+  transition: all 0.25s ease-out;
+}
+
+/* checkbox small circle */
+.checkbox:checked::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  box-shadow: var(--basic-box-shadow);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 900;
+}
+
+.flag {
+  width: 30px;
+  object-fit: cover;
+}

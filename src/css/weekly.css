@@ -1,55 +1,80 @@
 .weekly {
   overflow-x: scroll;
 }
+
 .weekly-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   min-height: 240px;
   padding: 20px 0;
   text-align: center;
 }
+
 .weekly-card {
   min-width: 160px;
   margin-right: 10px;
-  color: rgb(121, 121, 121);
+  color: #797979;
 }
+
 .weekly-card__date {
   font-weight: bold;
 }
+
 .weekly-card__img {
   background: #fff;
   margin: 10px;
   border-radius: 8px;
   width: 70px;
   height: 70px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .line-small {
   height: 1px;
   margin: 6px 0;
-  background: rgb(228, 228, 228);
+  background: #e4e4e4;
 }
 
 .weekly-card__description {
   font-size: 0.8rem;
 }
+
 .weekly-card__description::first-letter {
   text-transform: uppercase;
 }
+
 .weekly-card__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .weekly-card__info svg {
   width: 12px;
   margin-right: 8px;
 }
 
 .weekly-card__info-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 0.6rem;
 }
+/*# sourceMappingURL=weekly.css.map */
