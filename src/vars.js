@@ -1,6 +1,7 @@
 const K = "d48013e265168c93a3145b9c87869f29";
 const userOptions = document.getElementById("userOptions");
 const targetCurrent = document.getElementById("targetCurrent");
+const bodyWrap = document.querySelector("body");
 const phoneWrap = document.querySelector(".phone-wrap");
 const hourlyTarget = document.querySelector(".hourly-wrap");
 const dailyTarget = document.querySelector(".weekly-wrap");
@@ -16,6 +17,7 @@ export {
   K,
   userOptions,
   targetCurrent,
+  bodyWrap,
   phoneWrap,
   hourlyTarget,
   dailyTarget,

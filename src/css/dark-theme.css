@@ -54,4 +54,14 @@
 
 .theme-dark .menu-modal {
   background: var(--body-color-dark);
+  border-left: 1px solid rgb(93, 93, 93);
+}
+
+.theme-dark .line,
+.theme-dark .line-small {
+  background: rgb(93, 93, 93);
+}
+
+.theme-dark #topSearchField {
+  color: var(--font-color-dark);
 }

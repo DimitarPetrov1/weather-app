@@ -9,6 +9,7 @@ import {
   K,
   userOptions,
   targetCurrent,
+  bodyWrap,
   phoneWrap,
   hourlyTarget,
   dailyTarget,
@@ -56,9 +57,12 @@ const checkLS = () => {
   let lang = localStorage.getItem("lang");
   let units = localStorage.getItem("units");
   if (theme === "dark") {
+    bodyWrap.classList.add("theme-dark");
     phoneWrap.classList.add("theme-dark");
+
     themeCheckboxes[1].checked = true;
   } else {
+    bodyWrap.classList.remove("theme-dark");
     phoneWrap.classList.remove("theme-dark");
     themeCheckboxes[0].checked = true;
   }
