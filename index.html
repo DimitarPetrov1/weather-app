@@ -3,11 +3,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    />
-    <!-- ^^ needed to work in codepen -->
     <title>Weather App</title>
     <link rel="stylesheet" type="text/css" href="src/css/main.css" />
     <link rel="stylesheet" type="text/css" href="src/css/menu-options.css" />
@@ -34,7 +29,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input value="" placeholder="" type="search" id="topSearchField" />
+          <input type="search" id="topSearchField" autocomplete="off" />
           <button type="submit" id="startSearch">
             <svg
               xmlns="http://www.w3.org/2000/svg"

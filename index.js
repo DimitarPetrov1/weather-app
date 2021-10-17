@@ -141,29 +141,47 @@ userOptions.addEventListener("click", () => {
   }
 });
 
+const closeSearch = () => {
+  topSearchField.blur();
+  serachWrap.style.width = "44px";
+  searchIcon.style.opacity = 1;
+  topSearchField.value = "";
+  topSearchField.style.opacity = 0;
+  startSearch.style.visibility = "hidden";
+  searchOpen = false;
+};
+
 document.getElementById("targets").addEventListener("click", () => {
   if (menuOpen) {
     menuModal.style.right = "-240px";
     menuOpen = false;
   } else if (searchOpen) {
-    topSearchField.blur();
-    serachWrap.style.width = "44px";
-    searchIcon.style.opacity = 1;
-    topSearchField.value = "";
-    topSearchField.style.opacity = 0;
-    startSearch.style.visibility = "hidden";
-    searchOpen = false;
+    closeSearch();
   }
 });
 
 // data is fetched only from the local storage, we have a default if a user is new or local storage is empty
 const fetchData = () => {
-  let DATA = {};
+  let DATA = {
+    city: undefined,
+    feels_like: undefined,
+    temp: undefined,
+    curent_clouds: undefined,
+    wind_speed: undefined,
+    weather_main: undefined,
+    weather_main: undefined,
+    weather_desc: undefined,
+    weather_icon: undefined,
+    hourly_data: undefined,
+    daily_data: undefined,
+    current_humidity: undefined,
+    current_uv: undefined,
+  };
   let lat = "";
   let lon = "";
   let city = "";
 
-  async function fetchAll() {
+  const fetchAll = async () => {
     await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?&units=${units}&lang=${
         localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
@@ -193,8 +211,8 @@ const fetchData = () => {
       renderHourly(DATA);
       renderDaily(DATA);
     }
-  }
-  async function fetchCurrent() {
+  };
+  const fetchCurrent = async () => {
     await fetch(
       `http://api.openweathermap.org/data/2.5/weather?&lang=&q=${
         localStorage.getItem("default")
@@ -209,6 +227,7 @@ const fetchData = () => {
         city = data.name;
         lat = data.coord.lat;
         lon = data.coord.lon;
+        closeSearch();
       })
       .catch((err) => {
         console.log(err);
@@ -216,7 +235,7 @@ const fetchData = () => {
         localStorage.setItem("default", "London");
       });
     fetchAll();
-  }
+  };
   fetchCurrent();
 };
 
@@ -279,7 +298,7 @@ const renderHourly = (input) => {
     headerText.textContent = "24-hour forecast";
   }
 
-  function getCurrentHour() {
+  const getCurrentHour = () => {
     let today = new Date();
     let curretHour = today.getHours();
     for (let i = 0; i < 24; i++) {
@@ -290,7 +309,7 @@ const renderHourly = (input) => {
       }
       hours.push(curretHour);
     }
-  }
+  };
   getCurrentHour();
 
   hourlyTarget.innerHTML = input.hourly_data.splice(0, 24).map((hour, i) => {
